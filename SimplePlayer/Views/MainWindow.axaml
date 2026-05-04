@@ -1,0 +1,27 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vlc="clr-namespace:LibVLCSharp.Avalonia;assembly=LibVLCSharp.Avalonia"
+        x:Class="SimplePlayer.Views.MainWindow"
+        Title="Simple Drag Player"
+        DragDrop.AllowDrop="True"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaTitleBarHeightHint="-1">
+
+	<Grid RowDefinitions="Auto, *, Auto">
+		<!-- 顶部：借用标题栏空间，绝对不会被视频挡住 -->
+		<Border Grid.Row="0" Height="40" Background="#AA000000" IsHitTestVisible="False">
+			<TextBlock Name="FileNameDisplay"
+                       Text=""
+                       Foreground="White"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center" />
+		</Border>
+
+		<!-- 中间：视频区 -->
+		<vlc:VideoView Name="VideoPlayer" Grid.Row="1" />
+
+		<!-- 底部：进度条 -->
+		<Slider Name="ProgressBar" Grid.Row="2" Margin="10,0"
+                ValueChanged="ProgressBar_ValueChanged" />
+	</Grid>
+</Window>
